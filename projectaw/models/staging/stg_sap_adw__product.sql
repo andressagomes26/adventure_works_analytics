@@ -11,7 +11,7 @@ with
             , reorderpoint
             , standardcost
             , listprice
-            --, size
+            --, size 
             --, sizeunitmeasurecode
             --, weightunitmeasurecode
             --, weight
