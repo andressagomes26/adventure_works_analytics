@@ -1,11 +1,14 @@
 with 
-    country_region_data as (
+    credit_card_data as (
         select 
-            countryregioncode
-            , name
+            creditcardid
+            , cardtype
+            , cardnumber
+            , expmonth
+            , expyear
             , modifieddate
-        from {{ source('sap_adw', 'countryregion') }}
+        from {{ source('sap_adw', 'creditcard') }}
     )
 
 select *
-from country_region_data
+from credit_card_data
