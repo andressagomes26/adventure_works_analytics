@@ -1,7 +1,7 @@
 with 
     address_data as (
         select 
-            addressid
+            addressid as address_id
             , addressline1
             , addressline2
             , city
