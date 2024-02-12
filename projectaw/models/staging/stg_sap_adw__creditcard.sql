@@ -2,7 +2,7 @@ with
     credit_card_data as (
         select 
             creditcardid as credit_card_id
-            , cardtype 
+            , cardtype
             , cardnumber
             , expmonth
             , expyear
