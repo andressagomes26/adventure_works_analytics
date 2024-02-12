@@ -1,12 +1,12 @@
 with 
     credit_card_data as (
         select 
-            creditcardid
-            , cardtype
+            creditcardid as credit_card_id
+            , cardtype 
             , cardnumber
             , expmonth
             , expyear
-            , modifieddate
+            , date(modifieddate) as modified_date  --modifieddate
         from {{ source('sap_adw', 'creditcard') }}
     )
 

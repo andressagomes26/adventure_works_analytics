@@ -10,7 +10,7 @@ with
             , unitprice
             , unitpricediscount
             , rowguid
-            , modifieddate
+            , date(modifieddate) as modified_date  --modifieddate
         from {{ source('sap_adw', 'salesorderdetail') }}
     )
 
