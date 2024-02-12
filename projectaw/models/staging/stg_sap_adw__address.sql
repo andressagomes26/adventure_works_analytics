@@ -9,7 +9,8 @@ with
             , postalcode
             , spatiallocation
             , rowguid
-            , modifieddate
+            --, modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'address') }}
     )
 
