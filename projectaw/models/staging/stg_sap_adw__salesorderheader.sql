@@ -1,22 +1,22 @@
 with 
     sales_order_header_data as (
         select 
-            salesorderid
+            salesorderid as sales_order_id
             , revisionnumber
-            , orderdate
-            , duedate
-            , shipdate
+            , date(orderdate) as order_date --, orderdate
+            , date(duedate) as due_date --, duedate
+            , date(shipdate) as ship_date --, shipdate
             , status
             , onlineorderflag
-            , purchaseordernumber
-            , accountnumber
-            , customerid
-            , salespersonid
-            , territoryid
+            --, purchaseordernumber
+            --, accountnumber
+            , customerid as customer_id
+            , salespersonid as sales_person_id
+            , territoryid as territory_id -- ver se adiciona o salesteritory
             , billtoaddressid
             , shiptoaddressid
-            , shipmethodid
-            , creditcardid
+            --, shipmethodid
+            , creditcardid as credit_card_id
             , creditcardapprovalcode
             , currencyrateid
             , subtotal
@@ -25,7 +25,7 @@ with
             , totaldue
             , comment
             , rowguid
-            , modifieddate
+            , date(modifieddate) as modified_date  --modifieddate
         from {{ source('sap_adw', 'salesorderheader') }}
     )
 
