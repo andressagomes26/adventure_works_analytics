@@ -5,7 +5,7 @@ with
             , salesorderdetailid as sales_order_detail_id
             --, carriertrackingnumber
             , orderqty
-            , productid
+            , productid as product_id
             --, specialofferid -- ver se usa a specialoffer
             , unitprice
             , unitpricediscount
