@@ -43,7 +43,7 @@ with
             -- , stg_address.address_id
             --, stg_address.state_province_id
             --, stg_state_province.state_province_id
-            --, stg_state_province.country_region_code
+            --, stg_state_province.country_region_cod
         from stg_order_header 
         left join stg_address 
             on stg_order_header.shiptoaddressid = stg_address.address_id
