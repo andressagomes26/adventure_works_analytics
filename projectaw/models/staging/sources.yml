@@ -37,7 +37,7 @@ sources:
       - name: address
         description: Street address information for customers, employees, and vendors.
         columns:
-          - name: countryregioncode
+          - name: addressid
             description: 	Primary key for Address records.
             tests:
               - unique
@@ -66,9 +66,8 @@ sources:
         description: Cross-reference table mapping sales orders to sales reason codes.
         columns:
           - name: salesorderid
-            description: Primary key. Foreign key to salesorderheader.salesorderid.
+            description: Foreign key to salesorderheader.salesorderid.
             tests:
-              - unique
               - not_null   
             
       - name: salesreason
@@ -93,9 +92,8 @@ sources:
         description: Individual products associated with a specific sales order. 
         columns:
           - name: salesorderid
-            description: Primary key. Foreign key to salesorderheader.salesorderid.
+            description: Foreign key to salesorderheader.salesorderid.
             tests:
-              - unique
               - not_null
 
       - name: salesperson
