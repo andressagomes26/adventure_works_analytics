@@ -6,9 +6,10 @@ with
             , countryregioncode as country_region_code
             , isonlystateprovinceflag
             , name as state_province_name
-            , territoryid as territory_id
+            , territoryid as territory_id --adicionar sales territory
             , rowguid
-            , modifieddate
+            --, modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'stateprovince') }}
     )
 
