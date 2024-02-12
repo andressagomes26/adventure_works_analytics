@@ -17,15 +17,18 @@ with
             --, weight
             , daystomanufacture
             --, productline
-            , class
-            , style
-            , productsubcategoryid
-            , productmodelid
-            , sellstartdate
-            , sellenddate
+            --, class
+            --, style
+            , productsubcategoryid --analisar se adiciona productsubcategory
+            -- , productmodelid
+            --, sellstartdate
+            --, sellenddate
+            , date(sellstartdate) as sell_start_date
+            , date(sellenddate) as sell_end_date
             --, discontinueddate
             , rowguid
-            , modifieddate
+            --, modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'product') }}
     )
 
