@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_customers 
+    description: This model represents the locations customers.
+    columns:
+      - name: location_sk
+        description: The surrogate key of the product.
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Unique customer identifier.
+        tests:
+          - unique
+          - not_null
+      
+      - name: business_entity_id
+        description: Unique person identifier.
+        tests:
+          - unique
+          - not_null
+
+      - name: firstname
+        description: First name of the person.
+        tests:
+          - not_null
+
+      - name: lastname
+        description: Last name of the person.
+        tests:
+          - not_null
+
+      - name: fullname
+        description: Full name of the person.
+        tests:
+          - not_null
+      
+      - name: person_type
+        description: Primary type of person.
+        tests:
+          - not_null
+
+      - name: name_store
+        description: Name of the store.
+        tests:
+          - not_null
