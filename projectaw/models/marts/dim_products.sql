@@ -1,4 +1,10 @@
 with 
+    , stg_sales_order_detail as (
+        select 
+            distinct(product_id)
+        from {{ ref('stg_sap_adw__salesorderdetail') }}
+    )
+    
     stg_product as (
         select 
             product_id
@@ -8,12 +14,6 @@ with
             , sell_start_date
             , sell_end_date
         from {{ ref('stg_sap_adw__product') }}
-    )
-
-    , stg_sales_order_detail as (
-        select 
-            distinct(product_id)
-        from {{ ref('stg_sap_adw__salesorderdetail') }}
     )
 
     , transformed_data as (
