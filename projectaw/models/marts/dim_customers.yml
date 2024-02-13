@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_customers 
-    description: This model represents the locations customers.
+    description: This model represents the customers dimension.
     columns:
       - name: location_sk
         description: The surrogate key of the product.
