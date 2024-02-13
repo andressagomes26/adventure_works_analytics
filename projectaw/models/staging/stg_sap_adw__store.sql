@@ -3,7 +3,7 @@ with
         select 
             businessentityid as business_entity_id
             , name as name_store
-            --, salespersonid adicionar  SalesPerson. ou nao
+            , salespersonid as sales_person_id --adicionar  SalesPerson. ou nao
             --, demographics
             , rowguid
             --, modifieddate

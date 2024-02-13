@@ -43,6 +43,15 @@ sources:
               - unique
               - not_null
 
+      - name: person
+        description: Human beings involved with AdventureWorks. Employees, customer contacts, and vendor contacts.
+        columns:
+          - name: businessentityid
+            description: Primary key for Person records.
+            tests:
+              - unique
+              - not_null
+
       # Sales schema
       - name: customer
         description: Current customer information.
