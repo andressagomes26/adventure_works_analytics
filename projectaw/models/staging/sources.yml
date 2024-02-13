@@ -114,6 +114,15 @@ sources:
               - unique
               - not_null
 
+      - name: salesterritory
+        description: Sales territory lookup table.
+        columns:
+          - name: territoryid
+            description: Primary key for SalesTerritory records.
+            tests:
+              - unique
+              - not_null
+
       - name: creditcard
         description: Customer credit card information.
         columns:
