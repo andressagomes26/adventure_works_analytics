@@ -2,7 +2,7 @@ with
     customer_data as (
         select 
             customerid as customer_id
-            --, personid as person_id adiciona person.person
+            , personid as person_id --adiciona person.person
             , storeid as store_id
             , territoryid as territory_id --adiciona Sales.SalesTerritory
             , rowguid
