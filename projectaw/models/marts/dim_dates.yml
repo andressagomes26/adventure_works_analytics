@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_dates 
+    description: This model represents the dates dimension.
+    columns:
+      - name: metric_date
+        description: Single date record.
+        tests:
+          - not_null
+          - unique
+
+      - name: metric_day
+        description: Day of metric_date.
+
+      - name: metric_month
+        description: Month of metric_date.
+
+      - name: metric_year
+        description: Year of metric_date.
+
+      - name: metric_quarter
+        description: Quarter of metric_date.
+
+      - name: dayofyear
+        description: Dayofyear of metric_date.
+
+      - name: fullmonth
+        description: Full name of the month of the year.
