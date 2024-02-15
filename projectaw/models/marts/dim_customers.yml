@@ -4,7 +4,7 @@ models:
   - name: dim_customers 
     description: This model represents the customers dimension.
     columns:
-      - name: location_sk
+      - name: customer_sk
         description: The surrogate key of the product.
         tests:
           - unique
