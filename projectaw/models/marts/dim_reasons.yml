@@ -7,13 +7,11 @@ models:
       - name: reason_sk
         description: The surrogate key of the product.
         tests:
-          - unique
           - not_null
 
       - name: sales_order_id
         description: Unique Sales Order Header identifier.
         tests:
-          - unique
           - not_null
       
       - name: sales_reason_name

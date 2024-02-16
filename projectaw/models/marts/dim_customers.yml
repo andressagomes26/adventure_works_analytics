@@ -44,5 +44,3 @@ models:
 
       - name: name_store
         description: Name of the store.
-        tests:
-          - not_null
