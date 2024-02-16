@@ -75,7 +75,7 @@ with
             , product_name
             , standardcost
             , listprice
-            , standardcost - listprice as gross_revenue_per_product
+            , listprice - standardcost as gross_revenue_per_product
         from {{ ref('dim_products') }}
     )
 
@@ -116,47 +116,118 @@ with
 
     , transformed_data as (
         select
-           stg_order_header.sales_order_id
-            , stg_order_header.order_date
-            , stg_order_header.ship_date
+        --    stg_order_header.sales_order_id
+        --     , stg_order_header.order_date
+        --     , stg_order_header.ship_date
+        --     , stg_order_header.status_sales
+        --     , stg_order_header.onlineorderflag
+        --     , stg_order_header.customer_id
+        --     , stg_order_header.sales_person_id
+        --     , stg_order_header.territory_id
+        --     , stg_order_header.billtoaddressid
+        --     , stg_order_header.credit_card_id
+        --     , stg_order_header.net_sales_revenue
+        --     , stg_order_header.taxamt
+        --     , stg_order_header.freight
+        --     , stg_order_header.gross_revenue 
+
+        --     , stg_order_detail.orderqty
+        --     , stg_order_detail.product_id
+        --     , stg_order_detail.unitprice
+        --     , stg_order_detail.unitpricediscount
+        --     , stg_order_detail.amount_paid_product
+
+        --     , dim_customer.business_entity_id
+        --     , dim_customer.firstname
+        --     , dim_customer.lastname
+        --     , dim_customer.fullname
+        --     , dim_customer.person_type
+
+        --     , dim_locations.city
+        --     , dim_locations.state_province_name
+        --     , dim_locations.country_region_name
+
+        --     , dim_creditcards.cardtype
+
+        --     , dim_products.product_name
+        --     , dim_products.standardcost
+        --     , dim_products.listprice
+        --     , dim_products.gross_revenue_per_product
+
+        --     , dim_reasons.sales_reason_name
+        --     , dim_reasons.reason_type
+
+        --     , dim_dates.metric_date
+        --     , dim_dates.metric_day
+        --     , dim_dates.metric_month
+        --     , dim_dates.metric_year
+        --     , dim_dates.metric_quarter
+        --     , dim_dates.semester
+        --     , dim_dates.dayofweek
+        --     , dim_dates.fullmonth
+
+        --     , agg_sales_region_persons.loginid
+        --     , agg_sales_region_persons.jobtitle
+        --     , agg_sales_region_persons.gender
+        --     , agg_sales_region_persons.currentflag
+        --     , agg_sales_region_persons.territory_name
+
+            stg_order_header.sales_order_id
             , stg_order_header.status_sales
             , stg_order_header.onlineorderflag
+           
+            --product 
+            , stg_order_detail.product_id
+            , dim_products.product_name
+            , round(dim_products.listprice, 2) as listprice
+            , round(dim_products.standardcost, 2) as standardcost
+            , round(dim_products.gross_revenue_per_product, 2) as gross_revenue_per_product
+
+            --sales
+            , stg_order_detail.orderqty
+            , round(stg_order_detail.unitprice, 2) as unitprice
+            , round(stg_order_detail.unitpricediscount, 2) as unitpricediscount
+            , round(stg_order_detail.amount_paid_product, 2) as amount_paid_product
+
+            , round(stg_order_header.net_sales_revenue, 2) as net_sales_revenue
+            , round(stg_order_header.taxamt, 2) as taxamt
+            , round(stg_order_header.freight, 2) as freight
+            , round(stg_order_header.gross_revenue, 2) as gross_revenue
+
+            --customer/person
             , stg_order_header.customer_id
             , stg_order_header.sales_person_id
-            , stg_order_header.territory_id
-            , stg_order_header.billtoaddressid
-            , stg_order_header.credit_card_id
-            , stg_order_header.net_sales_revenue
-            , stg_order_header.taxamt
-            , stg_order_header.freight
-            , stg_order_header.gross_revenue 
-
-            , stg_order_detail.orderqty
-            , stg_order_detail.product_id
-            , stg_order_detail.unitprice
-            , stg_order_detail.unitpricediscount
-            , stg_order_detail.amount_paid_product
-
             , dim_customer.business_entity_id
             , dim_customer.firstname
             , dim_customer.lastname
             , dim_customer.fullname
             , dim_customer.person_type
-
+            
+            -- sales-region-venderdor
+            , agg_sales_region_persons.loginid
+            , agg_sales_region_persons.jobtitle
+            , agg_sales_region_persons.gender
+            , agg_sales_region_persons.currentflag
+            
+            -- adress
+            --, stg_order_header.territory_id
+            , agg_sales_region_persons.territory_name
             , dim_locations.city
             , dim_locations.state_province_name
             , dim_locations.country_region_name
+            
+            
+            --, stg_order_header.billtoaddressid
+            , stg_order_header.credit_card_id
+            , dim_creditcards.cardtype            
 
-            , dim_creditcards.cardtype
-
-            , dim_products.product_name
-            , dim_products.standardcost
-            , dim_products.listprice
-            , dim_products.gross_revenue_per_product
-
+            -- reason
             , dim_reasons.sales_reason_name
             , dim_reasons.reason_type
 
+            --date
+            , stg_order_header.order_date
+            , stg_order_header.ship_date
             , dim_dates.metric_date
             , dim_dates.metric_day
             , dim_dates.metric_month
@@ -165,12 +236,6 @@ with
             , dim_dates.semester
             , dim_dates.dayofweek
             , dim_dates.fullmonth
-
-            , agg_sales_region_persons.loginid
-            , agg_sales_region_persons.jobtitle
-            , agg_sales_region_persons.gender
-            , agg_sales_region_persons.currentflag
-            , agg_sales_region_persons.territory_name
 
         from stg_order_header 
 
