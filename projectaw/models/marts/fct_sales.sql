@@ -116,63 +116,8 @@ with
 
     , transformed_data as (
         select
-        --    stg_order_header.sales_order_id
-        --     , stg_order_header.order_date
-        --     , stg_order_header.ship_date
-        --     , stg_order_header.status_sales
-        --     , stg_order_header.onlineorderflag
-        --     , stg_order_header.customer_id
-        --     , stg_order_header.sales_person_id
-        --     , stg_order_header.territory_id
-        --     , stg_order_header.billtoaddressid
-        --     , stg_order_header.credit_card_id
-        --     , stg_order_header.net_sales_revenue
-        --     , stg_order_header.taxamt
-        --     , stg_order_header.freight
-        --     , stg_order_header.gross_revenue 
-
-        --     , stg_order_detail.orderqty
-        --     , stg_order_detail.product_id
-        --     , stg_order_detail.unitprice
-        --     , stg_order_detail.unitpricediscount
-        --     , stg_order_detail.amount_paid_product
-
-        --     , dim_customer.business_entity_id
-        --     , dim_customer.firstname
-        --     , dim_customer.lastname
-        --     , dim_customer.fullname
-        --     , dim_customer.person_type
-
-        --     , dim_locations.city
-        --     , dim_locations.state_province_name
-        --     , dim_locations.country_region_name
-
-        --     , dim_creditcards.cardtype
-
-        --     , dim_products.product_name
-        --     , dim_products.standardcost
-        --     , dim_products.listprice
-        --     , dim_products.gross_revenue_per_product
-
-        --     , dim_reasons.sales_reason_name
-        --     , dim_reasons.reason_type
-
-        --     , dim_dates.metric_date
-        --     , dim_dates.metric_day
-        --     , dim_dates.metric_month
-        --     , dim_dates.metric_year
-        --     , dim_dates.metric_quarter
-        --     , dim_dates.semester
-        --     , dim_dates.dayofweek
-        --     , dim_dates.fullmonth
-
-        --     , agg_sales_region_persons.loginid
-        --     , agg_sales_region_persons.jobtitle
-        --     , agg_sales_region_persons.gender
-        --     , agg_sales_region_persons.currentflag
-        --     , agg_sales_region_persons.territory_name
-
-            stg_order_header.sales_order_id
+            {{ dbt_utils.generate_surrogate_key(['stg_order_header.sales_order_id']) }} as fct_sales_sk
+            , stg_order_header.sales_order_id
             , stg_order_header.status_sales
             , stg_order_header.onlineorderflag
            
@@ -216,7 +161,7 @@ with
             , dim_locations.state_province_name
             , dim_locations.country_region_name
             
-            
+            --credit-card
             --, stg_order_header.billtoaddressid
             , stg_order_header.credit_card_id
             , dim_creditcards.cardtype            
@@ -238,31 +183,22 @@ with
             , dim_dates.fullmonth
 
         from stg_order_header 
-
         left join stg_order_detail 
             on stg_order_header.sales_order_id = stg_order_detail.sales_order_id
-
         left join dim_customer 
             on stg_order_header.customer_id = dim_customer.customer_id
-
         left join dim_locations 
             on stg_order_header.billtoaddressid = dim_locations.address_id
-
         left join dim_creditcards 
             on stg_order_header.credit_card_id = dim_creditcards.credit_card_id
-
         left join dim_products 
             on stg_order_detail.product_id = dim_products.product_id
-
         left join dim_reasons 
             on stg_order_header.sales_order_id = dim_reasons.sales_order_id
-
         left join dim_dates 
             on stg_order_header.order_date = dim_dates.metric_date
-
         left join agg_sales_region_persons 
             on stg_order_header.sales_order_id = agg_sales_region_persons.sales_order_id
-
         order by stg_order_header.sales_order_id
     )
 

@@ -15,11 +15,11 @@ models:
           - not_null
       
       - name: sales_reason_name
-        description: Sales reason description..
+        description: Sales reason description.
         tests:
           - not_null
 
       - name: reason_type
-        description: Category the sales reason belongs to..
+        description: Category the sales reason belongs to.
         tests:
           - not_null

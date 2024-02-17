@@ -12,18 +12,30 @@ models:
 
       - name: metric_day
         description: Day of metric_date.
+        tests:
+          - not_null
 
       - name: metric_month
         description: Month of metric_date.
+        tests:
+          - not_null
 
       - name: metric_year
         description: Year of metric_date.
+        tests:
+          - not_null
 
       - name: metric_quarter
         description: Quarter of metric_date.
+        tests:
+          - not_null
 
       - name: dayofyear
         description: Dayofyear of metric_date.
+        tests:
+          - not_null
 
       - name: fullmonth
         description: Full name of the month of the year.
+        tests:
+          - not_null
