@@ -5,6 +5,7 @@ with
             , sales_reason_id
         from {{ ref('stg_sap_adw__salesorderheadersalesreason') }}
     )
+    
 
     , stg_salesreason as (
         select 
