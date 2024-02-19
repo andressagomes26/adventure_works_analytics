@@ -1,0 +1,214 @@
+version: 2
+
+models:
+  - name: fct_sales 
+    description: This model represents the sales fact table.
+    columns:
+      - name: fct_sales_sk
+        description: The surrogate key of the product.
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id
+        description: Unique Sales Order Header identifier.
+        tests:
+          - not_null
+      
+      - name: status_sales
+        description: Order current status.
+        tests:
+          - not_null
+
+      - name: onlineorderflag
+        description: Online shop.
+        tests:
+          - not_null
+
+      - name: product_id
+        description: Product sold to customer.
+        tests:
+          - not_null
+
+      - name: product_name
+        description: The name of the product.
+        tests:
+          - not_null
+
+      - name: listprice
+        description: Selling price of the product.
+        tests:
+          - not_null
+
+      - name: standardcost
+        description: Standard cost of the product.
+        tests:
+          - not_null
+
+      - name: gross_revenue_per_product
+        description: Gross revenue per product.
+        tests:
+          - not_null
+
+      - name: orderqty
+        description: Quantity ordered per product.
+        tests:
+          - not_null
+
+      - name: unitprice
+        description: Selling price of a single product.
+        tests:
+          - not_null
+
+      - name: unitpricediscount
+        description: Discount amount.
+        tests:
+          - not_null
+
+      - name: amount_paid_product
+        description: Amount the customer paid for the product. Not including fees, shipping and taxes.
+        tests:
+          - not_null
+
+      - name: net_sales_revenue
+        description: Sales subtotal.
+        tests:
+          - not_null
+
+      - name: taxamt
+        description: Tax amount.
+        tests:
+          - not_null
+
+      - name: freight
+        description: Shipping cost.
+        tests:
+          - not_null
+
+      - name: gross_revenue
+        description: Total due from customer. Computed as Subtotal + TaxAmt + Freight.
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: Customer identification number.
+        tests:
+          - not_null
+
+      - name: sales_person_id
+        description: Sales person who created the sales order.
+
+      - name: business_entity_id
+        description: Unique person identifier.
+        tests:
+          - unique
+          - not_null
+
+      - name: firstname
+        description: First name of the person.
+        tests:
+          - not_null
+
+      - name: lastname
+        description: Last name of the person.
+        tests:
+          - not_null
+
+      - name: fullname
+        description: Full name of the person.
+        tests:
+          - not_null
+
+      - name: person_type
+        description: Person type identifier.
+        tests:
+          - not_null
+
+      - name: loginid
+        description: Network login.
+
+      - name: jobtitle
+        description: Work title.
+
+      - name: gender
+        description: Gender of employee.
+
+      - name: currentflag
+        description: Employee inactive or active.
+
+      - name: territory_name
+        description: Sales territory description.
+
+      - name: city
+        description: Name of the city.
+        tests:
+          - not_null
+
+      - name: state_province_name
+        description: State or province description.
+        tests:
+          - not_null
+
+      - name: country_region_name
+        description: Country or region name.
+        tests:
+          - not_null
+
+      - name: credit_card_id
+        description: Credit card identification number. 
+
+      - name: cardtype
+        description: Credit card name.
+        tests:
+          - not_null
+        
+      - name: sales_reason_name
+        description: Sales reason description.
+
+      - name: reason_type
+        description: Category the sales reason belongs to.
+
+      - name: order_date
+        description: Dates the sales order was created.
+        tests:
+          - not_null
+
+      - name: ship_date
+        description: 	Date the order was shipped to the customer.
+        tests:
+          - not_null
+
+      - name: metric_date
+        description: Single date record.
+        tests:
+          - not_null
+
+      - name: metric_day
+        description: Day of metric_date.
+        tests:
+          - not_null
+
+      - name: metric_month
+        description: Month of metric_date.
+        tests:
+          - not_null
+
+      - name: metric_year
+        description: Year of metric_date.
+        tests:
+          - not_null
+
+      - name: metric_quarter
+        description: Quarter of metric_date.
+        tests:
+          - not_null
+
+      - name: dayofyear
+        description: Dayofyear of metric_date.
+        tests:
+          - not_null
+
+      - name: fullmonth
+        description: Full name of the month of the year.
+        tests:
+          - not_null
