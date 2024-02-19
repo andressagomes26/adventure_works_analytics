@@ -101,18 +101,18 @@ with
         from {{ ref('dim_dates') }}
     )
 
-    , agg_sales_region_persons as (
-        select
-            agg_sales_region_person_sk
-            , sales_order_id
-            , sales_person_id
-            , loginid
-            , jobtitle
-            , gender
-            , currentflag
-            , territory_name
-        from {{ ref('agg_sales_region_persons') }}
-    )
+    -- , agg_sales_region_persons as (
+    --     select
+    --         agg_sales_region_person_sk
+    --         , sales_order_id
+    --         , sales_person_id
+    --         , loginid
+    --         , jobtitle
+    --         , gender
+    --         , currentflag
+    --         , territory_name
+    --     from {{ ref('agg_sales_region_persons') }}
+    --)
 
     , transformed_data as (
         select
@@ -148,15 +148,15 @@ with
             , dim_customer.fullname
             , dim_customer.person_type
             
-            -- sales-region-venderdor
-            , agg_sales_region_persons.loginid
-            , agg_sales_region_persons.jobtitle
-            , agg_sales_region_persons.gender
-            , agg_sales_region_persons.currentflag
+            -- -- sales-region-venderdor
+            -- , agg_sales_region_persons.loginid
+            -- , agg_sales_region_persons.jobtitle
+            -- , agg_sales_region_persons.gender
+            -- , agg_sales_region_persons.currentflag
             
-            -- adress
-            --, stg_order_header.territory_id
-            , agg_sales_region_persons.territory_name
+            -- -- adress
+            -- --, stg_order_header.territory_id
+            -- , agg_sales_region_persons.territory_name
             , dim_locations.city
             , dim_locations.state_province_name
             , dim_locations.country_region_name
@@ -197,8 +197,8 @@ with
             on stg_order_header.sales_order_id = dim_reasons.sales_order_id
         left join dim_dates 
             on stg_order_header.order_date = dim_dates.metric_date
-        left join agg_sales_region_persons 
-            on stg_order_header.sales_order_id = agg_sales_region_persons.sales_order_id
+        -- left join agg_sales_region_persons 
+        --     on stg_order_header.sales_order_id = agg_sales_region_persons.sales_order_id
         order by stg_order_header.sales_order_id
     )
 
