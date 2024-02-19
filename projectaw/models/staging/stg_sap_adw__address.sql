@@ -5,7 +5,7 @@ with
             , addressline1
             , addressline2
             , city
-            , stateprovinceid
+            , stateprovinceid as state_province_id
             , postalcode
             , spatiallocation
             , rowguid
