@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: agg_sales_region_persons
+    description: This model represents the aggregated table of sales by region and seller.
+    columns:
+      - name: agg_sales_region_person_sk
+        description: The surrogate key of the aggregated table.
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id
+        description: Unique identifier.
+        tests:
+          - unique
+          - not_null
+      
+      - name: sales_person_id
+        description: Sales person who created the sales order.
+        tests:
+          - not_null
+
+      - name: loginid
+        description: Network login.
+        tests:
+          - not_null
+
+      - name: jobtitle
+        description: Work title.
+        tests:
+          - not_null
+
+      - name: gender
+        description: Gender of employee.
+        tests:
+          - not_null
+
+      - name: currentflag
+        description: Employee inactive or active.
+        tests:
+          - not_null
+
+      - name: territory_id
+        description: Territory in which the sale was made.
+
+      - name: territory_name
+        description: Sales territory description.
+        tests:
+          - not_null
+
+      - name: country_region_code
+        description: ISO standard country or region code.
+        tests:
+          - not_null
+
+      - name: country_region_name
+        description: Country or region name.
+        tests:
+          - not_null
