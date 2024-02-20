@@ -120,47 +120,49 @@ with
             on stg_order_detail.product_id = dim_products.product_id
     )
 
-     , transformed_data as (
+    , transformed_data as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'join_order_header.sales_order_id'
-                , 'join_order_header.customer_fk'
-                , 'join_order_header.location_fk'
-                , 'join_order_header.credit_card_fk'
-                , 'join_order_header.reason_fk'
-                , 'join_order_detail.product_fk'
-                ]) 
-            }} as order_sk
+                'join_order_header.sales_order_id']) 
+            }} as fct_sales_sk
+                -- , 'join_order_header.customer_fk'
+                -- , 'join_order_header.location_fk'
+                -- , 'join_order_header.credit_card_fk'
+                -- , 'join_order_header.reason_fk'
+                -- , 'join_order_header.order_date'
+                -- , 'join_order_detail.product_fk'
+                
             , join_order_header.sales_order_id
             , join_order_header.customer_fk
             , join_order_header.location_fk
             , join_order_header.credit_card_fk
             , join_order_header.reason_fk
+            , join_order_detail.product_fk
+
             , join_order_header.order_date
             , join_order_header.ship_date
+
             , join_order_header.status_sales
             , join_order_header.onlineorderflag
             , join_order_header.customer_id
             , join_order_header.sales_person_id
             , join_order_header.territory_id
-            , join_order_header.billtoaddressid
             , join_order_header.credit_card_id
+            , join_order_detail.sales_order_detail_id
+            , join_order_detail.product_id
+
             , join_order_header.subtotal 
             , join_order_header.taxamt
             , join_order_header.freight
             , join_order_header.totaldue
-
-            --, join_order_detail.sales_order_id
-            , join_order_detail.product_fk
-            , join_order_detail.sales_order_detail_id
             , join_order_detail.orderqty
-            , join_order_detail.product_id
             , join_order_detail.unitprice
             , join_order_detail.unitpricediscount
             , join_order_detail.amount_paid_product
         from join_order_header
         left join join_order_detail
             on join_order_header.sales_order_id = join_order_detail.sales_order_id
+        order by fct_sales_sk
     )
 
 select *
