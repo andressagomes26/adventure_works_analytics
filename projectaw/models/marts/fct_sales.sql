@@ -123,15 +123,15 @@ with
     , transformed_data as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'join_order_header.sales_order_id']) 
+                'join_order_header.sales_order_id'
+                , 'join_order_header.customer_fk'
+                , 'join_order_header.location_fk'
+                , 'join_order_header.credit_card_fk'
+                , 'join_order_header.reason_fk'
+                , 'join_order_header.order_date'
+                , 'join_order_detail.product_fk'
+                ]) 
             }} as fct_sales_sk
-                -- , 'join_order_header.customer_fk'
-                -- , 'join_order_header.location_fk'
-                -- , 'join_order_header.credit_card_fk'
-                -- , 'join_order_header.reason_fk'
-                -- , 'join_order_header.order_date'
-                -- , 'join_order_detail.product_fk'
-                
             , join_order_header.sales_order_id
             , join_order_header.customer_fk
             , join_order_header.location_fk
