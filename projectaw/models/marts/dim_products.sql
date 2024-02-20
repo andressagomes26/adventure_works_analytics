@@ -18,7 +18,7 @@ with
 
     , transformed_data as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_sales_order_detail.product_id']) }} as product_sk --row_number() over (order by stg_sales_order_detail.product_id) as product_sk
+            {{ dbt_utils.generate_surrogate_key(['stg_sales_order_detail.product_id']) }} as product_sk
             , stg_sales_order_detail.product_id
             , stg_product.product_name
             , stg_product.standardcost

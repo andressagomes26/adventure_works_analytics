@@ -24,7 +24,8 @@ with
         from stg_sales_order_header 
         left join stg_credit_card 
             on stg_sales_order_header.credit_card_id = stg_credit_card.credit_card_id
-        where stg_sales_order_header.credit_card_id is not null
+        where 
+            stg_sales_order_header.credit_card_id is not null
     )
 
 select *

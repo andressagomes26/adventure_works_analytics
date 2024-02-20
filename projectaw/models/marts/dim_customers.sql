@@ -53,8 +53,7 @@ with
         left join stg_person
             on stg_customer.person_id = stg_person.business_entity_id
         -- left join stg_store
-        --     on stg_person.business_entity_id = stg_store.business_entity_id
-        
+        --     on stg_person.business_entity_id = stg_store.business_entity_id     
     )
 
 select *

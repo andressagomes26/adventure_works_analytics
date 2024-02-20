@@ -30,8 +30,13 @@ models:
         tests:
           - not_null
 
-      - name: dayofyear
-        description: Dayofyear of metric_date.
+      - name: semester
+        description: Semester of metric_date.
+        tests:
+          - not_null
+
+      - name: dayofweek
+        description: Day of week of metric_date.
         tests:
           - not_null
 
