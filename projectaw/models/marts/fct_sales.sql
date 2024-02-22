@@ -104,6 +104,14 @@ with
         from {{ ref('dim_products') }}
     )
 
+    , stg_product as (
+        select 
+            product_id
+            , standardcost
+            , listprice
+        from {{ ref('stg_sap_adw__product') }}
+    )
+
     , join_order_detail as (
         select
             stg_order_detail.sales_order_id
@@ -115,9 +123,13 @@ with
             , stg_order_detail.unitprice
             , stg_order_detail.unitpricediscount
             , stg_order_detail.amount_paid_product
+            , stg_product.standardcost
+            , stg_product.listprice
         from stg_order_detail
         left join dim_products 
             on stg_order_detail.product_id = dim_products.product_id
+        left join stg_product 
+            on stg_order_detail.product_id = stg_product.product_id
     )
 
     , transformed_data as (
@@ -144,12 +156,12 @@ with
 
             , join_order_header.status_sales
             , join_order_header.onlineorderflag
-            , join_order_header.customer_id
-            , join_order_header.sales_person_id
-            , join_order_header.territory_id
-            , join_order_header.credit_card_id
-            , join_order_detail.sales_order_detail_id
-            , join_order_detail.product_id
+            -- , join_order_header.customer_id
+            -- , join_order_header.sales_person_id
+            -- , join_order_header.territory_id
+            -- , join_order_header.credit_card_id
+            -- , join_order_detail.sales_order_detail_id
+            -- , join_order_detail.product_id
 
             , join_order_header.subtotal 
             , join_order_header.taxamt
@@ -159,10 +171,16 @@ with
             , join_order_detail.unitprice
             , join_order_detail.unitpricediscount
             , join_order_detail.amount_paid_product
-        from join_order_header
-        left join join_order_detail
-            on join_order_header.sales_order_id = join_order_detail.sales_order_id
-        order by fct_sales_sk
+            , join_order_detail.standardcost
+            , join_order_detail.listprice
+        from join_order_detail
+        left join join_order_header
+            on join_order_detail.sales_order_id = join_order_header.sales_order_id
+        order by fct_sales_sk  
+        -- from join_order_header
+        -- left join join_order_detail
+        --     on join_order_header.sales_order_id = join_order_detail.sales_order_id
+        -- order by fct_sales_sk
     )
 
 select *

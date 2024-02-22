@@ -47,7 +47,7 @@ with
             , stg_address.postalcode
             , stg_state_province.state_province_code
             , stg_state_province.state_province_name
-            , stg_order_header.territory_id
+            -- , stg_order_header.territory_id
             , stg_sales_territory.territory_name
             , stg_country_region.country_region_code
             , stg_country_region.country_region_name

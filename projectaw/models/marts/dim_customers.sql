@@ -40,17 +40,18 @@ with
     , transformed_data as (
         select
             {{ dbt_utils.generate_surrogate_key(['stg_order_header.customer_id']) }} as customer_sk
-            , stg_order_header.customer_id
-            , stg_person.business_entity_id
-            , stg_person.firstname
-            , stg_person.lastname
-            , stg_person.fullname
-            , stg_person.person_type
+            --{{ dbt_utils.generate_surrogate_key(['stg_customer.customer_id']) }} as customer_sk
+            , stg_customer.customer_id
+            --, stg_person.business_entity_id
+            , stg_person.firstname as customer_first_name
+            , stg_person.lastname as customer_last_name
+            , stg_person.fullname as customer_full_name
+            , stg_person.person_type as customer_person_type
             --, stg_store.name_store
         from stg_order_header 
         left join stg_customer 
             on stg_order_header.customer_id = stg_customer.customer_id
-        left join stg_person
+         left join stg_person
             on stg_customer.person_id = stg_person.business_entity_id
         -- left join stg_store
         --     on stg_person.business_entity_id = stg_store.business_entity_id     
