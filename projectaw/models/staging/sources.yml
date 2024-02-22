@@ -15,6 +15,25 @@ sources:
               - unique
               - not_null
 
+      - name: productsubcategory
+        description: Product Subcategory.
+        columns:
+          - name: productsubcategoryid
+            description: Primary key for Product Subcategory.
+            tests:
+              - unique
+              - not_null
+
+
+      - name: productcategory
+        description: Product Category.
+        columns:
+          - name: productcategoryid
+            description: Primary key for Product Category.
+            tests:
+              - unique
+              - not_null
+
       # Person schema
       - name: stateprovince
         description: State and province lookup table.

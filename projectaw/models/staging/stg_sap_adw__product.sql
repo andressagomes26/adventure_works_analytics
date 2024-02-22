@@ -11,23 +11,22 @@ with
             , reorderpoint
             , standardcost
             , listprice
-            --, size 
-            --, sizeunitmeasurecode
-            --, weightunitmeasurecode
-            --, weight
+            , size 
+            , sizeunitmeasurecode
+            , weightunitmeasurecode
+            , weight
             , daystomanufacture
-            --, productline
-            --, class
-            --, style
-            , productsubcategoryid --analisar se adiciona productsubcategory
-            -- , productmodelid
-            --, sellstartdate
-            --, sellenddate
+            , productline
+            , class
+            , style
+            , productsubcategoryid as product_subcategory_id
+            , productmodelid
+            , sellstartdate
+            , sellenddate
             , date(sellstartdate) as sell_start_date
             , date(sellenddate) as sell_end_date
-            --, discontinueddate
+            , discontinueddate
             , rowguid
-            --, modifieddate
             , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'product') }}
     )
