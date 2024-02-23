@@ -18,7 +18,7 @@ with
         where 
             city != 'Saint Ouen'
             or country_region_code != 'FR'
-            or country_region_name != 'France'
+            or country_region_name != 'França'
     )
 
 select * 

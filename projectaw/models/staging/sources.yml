@@ -24,7 +24,6 @@ sources:
               - unique
               - not_null
 
-
       - name: productcategory
         description: Product Category.
         columns:

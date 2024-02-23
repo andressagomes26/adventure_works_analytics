@@ -1,7 +1,7 @@
 with 
     stg_order_header as (
         select 
-            distinct shiptoaddressid
+            distinct billtoaddressid
             , territory_id
         from {{ ref('stg_sap_adw__salesorderheader') }}
     )
@@ -35,20 +35,30 @@ with
     , stg_country_region as (
         select 
             country_region_code
-            , country_region_name
+            -- , country_region_name
+            , case
+                when country_region_name = 'France'	then 'França'
+                when country_region_name = 'Canada' then 'Canadá'
+                when country_region_name = 'United States' then 'Estados Unidos'
+                when country_region_name = 'Germany' then 'Alemanha'
+                when country_region_name = 'United Kingdom'	then 'Reino Unido'
+                when country_region_name = 'Australia' then 'Austrália'
+            end as country_region_name
         from {{ ref('stg_sap_adw__countryregion') }}
     )
 
     , transformed_data as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_order_header.shiptoaddressid']) }} as location_sk
-            , stg_order_header.shiptoaddressid as address_id
+            {{ dbt_utils.generate_surrogate_key(['stg_order_header.billtoaddressid']) }} as location_sk
+            , stg_order_header.billtoaddressid as address_id
             , stg_address.city
             , stg_address.postalcode
             , stg_state_province.state_province_code
             , stg_state_province.state_province_name
             -- , stg_order_header.territory_id
+
             , stg_sales_territory.territory_name
+            
             , stg_country_region.country_region_code
             , stg_country_region.country_region_name
             -- , stg_address.address_id
@@ -57,14 +67,14 @@ with
             --, stg_state_province.country_region_cod
         from stg_order_header 
         left join stg_address 
-            on stg_order_header.shiptoaddressid = stg_address.address_id
+            on stg_order_header.billtoaddressid = stg_address.address_id
         left join stg_state_province
             on stg_address.state_province_id = stg_state_province.state_province_id
         left join stg_sales_territory
             on stg_order_header.territory_id = stg_sales_territory.territory_id
         left join stg_country_region
-            on  stg_sales_territory.country_region_code = stg_country_region.country_region_code
-            --on stg_state_province.country_region_code = stg_country_region.country_region_code
+            --on  stg_sales_territory.country_region_code = stg_country_region.country_region_code
+            on stg_state_province.country_region_code = stg_country_region.country_region_code
     )
 
 select *
