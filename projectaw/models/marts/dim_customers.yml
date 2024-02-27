@@ -15,29 +15,23 @@ models:
         tests:
           - unique
           - not_null
-      
-      - name: business_entity_id
-        description: Unique person identifier.
-        tests:
-          - unique
-          - not_null
 
-      - name: firstname
+      - name: customer_first_name
         description: First name of the person.
         tests:
           - not_null
 
-      - name: lastname
+      - name: customer_last_name
         description: Last name of the person.
         tests:
           - not_null
 
-      - name: fullname
+      - name: customer_full_name
         description: Full name of the person.
         tests:
           - not_null
       
-      - name: person_type
+      - name: customer_person_type
         description: Primary type of person.
         tests:
           - not_null
