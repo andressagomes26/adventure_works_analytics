@@ -20,13 +20,3 @@ models:
         description: Credit card name.
         tests:
           - not_null
-
-      - name: expmonth
-        description: Credit card expiration month.
-        tests:
-          - not_null
-
-      - name: expyear
-        description: 	Credit card expiration year.
-        tests:
-          - not_null
