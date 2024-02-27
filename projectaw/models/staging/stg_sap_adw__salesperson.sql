@@ -2,15 +2,14 @@
 with 
     sales_person_data as (
         select 
-            businessentityid as business_entity_id --ver se apaga HumanResources.Employee
-            , territoryid as territory_id  --ver se apaga Sales.SalesTerritory
+            businessentityid as business_entity_id
+            , territoryid as territory_id
             , salesquota
             , bonus
             , commissionpct
             , salesytd
             , saleslastyear
             , rowguid
-            --, modifieddate
             , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'salesperson') }}
     )

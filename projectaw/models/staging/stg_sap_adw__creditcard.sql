@@ -6,7 +6,7 @@ with
             , cardnumber
             , expmonth
             , expyear
-            , date(modifieddate) as modified_date  --modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'creditcard') }}
     )
 

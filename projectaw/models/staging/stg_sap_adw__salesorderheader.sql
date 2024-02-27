@@ -3,19 +3,19 @@ with
         select 
             salesorderid as sales_order_id
             , revisionnumber
-            , date(orderdate) as order_date --, orderdate
-            , date(duedate) as due_date --, duedate
-            , date(shipdate) as ship_date --, shipdate
+            , date(orderdate) as order_date
+            , date(duedate) as due_date
+            , date(shipdate) as ship_date
             , status
             , onlineorderflag
-            --, purchaseordernumber
-            --, accountnumber
+            , purchaseordernumber
+            , accountnumber
             , customerid as customer_id
             , salespersonid as sales_person_id
-            , territoryid as territory_id -- ver se adiciona o salesteritory
+            , territoryid as territory_id
             , billtoaddressid
             , shiptoaddressid
-            --, shipmethodid
+            , shipmethodid
             , creditcardid as credit_card_id
             , creditcardapprovalcode
             , currencyrateid
@@ -25,7 +25,7 @@ with
             , totaldue
             , comment
             , rowguid
-            , date(modifieddate) as modified_date  --modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'salesorderheader') }}
     )
 

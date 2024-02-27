@@ -3,10 +3,9 @@ with
         select 
             businessentityid as business_entity_id
             , name as name_store
-            , salespersonid as sales_person_id --adicionar  SalesPerson. ou nao
-            --, demographics
+            , salespersonid as sales_person_id
+            , demographics
             , rowguid
-            --, modifieddate
             , date(modifieddate) as modified_date 
         from {{ source('sap_adw', 'store') }}
     )

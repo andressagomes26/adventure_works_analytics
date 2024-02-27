@@ -2,21 +2,20 @@ with
     employee_data as (
         select 
             businessentityid as business_entity_id
-            -- nationalidnumber
+            , nationalidnumber
             , loginid
             , jobtitle
-            -- birthdate
-            -- maritalstatus
+            , birthdate
+            , maritalstatus
             , gender
-            -- hiredate
-            -- salariedflag
-            -- vacationhours
-            -- sickleavehours
+            , hiredate
+            , salariedflag
+            , vacationhours
+            , sickleavehours
             , currentflag
-            -- rowguid
-            -- modifieddate
-            -- organizationnode
-            --, modifieddate
+            , rowguid
+            , modifieddate
+            , organizationnode
             , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'employee') }}
     )

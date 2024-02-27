@@ -154,7 +154,7 @@ sources:
         description: Employee information such as salary, department, and title.
         columns:
           - name: businessentityid
-            description: PPrimary key for Employee records.
+            description: Primary key for Employee records.
             tests:
               - unique
               - not_null

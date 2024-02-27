@@ -3,14 +3,14 @@ with
         select 
             salesorderid as sales_order_id
             , salesorderdetailid as sales_order_detail_id
-            --, carriertrackingnumber
+            , carriertrackingnumber
             , orderqty
             , productid as product_id
-            --, specialofferid -- ver se usa a specialoffer
+            , specialofferid
             , unitprice
             , unitpricediscount
             , rowguid
-            , date(modifieddate) as modified_date  --modifieddate
+            , date(modifieddate) as modified_date
         from {{ source('sap_adw', 'salesorderdetail') }}
     )
 
