@@ -4,7 +4,12 @@ with
             businessentityid as business_entity_id
             , nationalidnumber
             , loginid
-            , jobtitle
+            , case
+                when jobtitle = 'North American Sales Manager' then 'Gerente de Vendas Norte-Americano'
+                when jobtitle = 'Sales Representative' then 'Representante de vendas'
+                when jobtitle = 'European Sales Manager' then 'Gerente de Vendas Europeu'
+                when jobtitle = 'Pacific Sales Manager' then 'Gerente de Vendas do Pacífico'
+            end as jobtitle
             , birthdate
             , maritalstatus
             , gender

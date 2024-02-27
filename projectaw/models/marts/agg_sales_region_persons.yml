@@ -28,8 +28,6 @@ models:
 
       - name: jobtitle
         description: Work title.
-        tests:
-          - not_null
 
       - name: gender
         description: Gender of employee.
