@@ -36,6 +36,11 @@ models:
         tests:
           - not_null
       
+      - name: territory_name
+        description: Sales territory description
+        tests:
+          - not_null
+
       - name: country_region_code
         description: ISO standard code for countries and regions.
         tests:
