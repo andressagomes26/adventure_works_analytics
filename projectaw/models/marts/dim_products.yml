@@ -30,8 +30,3 @@ models:
         description: Category description.
         tests:
           - not_null
-      # - name: standardcost
-      #   description: Standard cost of the product.
-
-      # - name: listprice
-      #   description: Selling price of the product.

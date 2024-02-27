@@ -4,24 +4,17 @@ with
             sales_order_id
             , order_date
             , ship_date
-            , case
-                when status = 1 then 'Em processo'
-                when status = 2 then 'Aprovado'
-                when status = 3 then 'Pedido em espera'
-                when status = 4 then 'Rejeitado'
-                when status = 5 then 'Enviado'
-                when status = 6 then 'Cancelado'
-            end as status_sales
+            , status_sales
             , onlineorderflag
             , customer_id
             , sales_person_id
             , territory_id
             , billtoaddressid
             , credit_card_id
-            , subtotal --as net_sales_revenue -- receita liquida por pedido = tirando descontos, taxas, fretes
+            , subtotal
             , taxamt
             , freight
-            , totaldue --as gross_revenue -- receita bruta - receita liquida + taxas + fretes
+            , totaldue
         from {{ ref('stg_sap_adw__salesorderheader') }}
     )
 
@@ -92,7 +85,7 @@ with
             , product_id
             , unitprice
             , unitpricediscount
-            , orderqty * (unitprice - unitpricediscount) as amount_paid_product -- valor pago pelo produto. Ex: Pedido 1 - teve 2 cadernos de 20rs e 5desconto = 2*15 = 30
+            , orderqty * (unitprice - unitpricediscount) as amount_paid_product
         from {{ ref('stg_sap_adw__salesorderdetail') }}
     )
 
@@ -100,7 +93,6 @@ with
         select
             product_sk
             , product_id
-            -- listprice - standardcost as gross_revenue_per_product
         from {{ ref('dim_products') }}
     )
 
@@ -150,19 +142,10 @@ with
             , join_order_header.credit_card_fk
             , join_order_header.reason_fk
             , join_order_detail.product_fk
-
             , join_order_header.order_date
             , join_order_header.ship_date
-
             , join_order_header.status_sales
             , join_order_header.onlineorderflag
-            -- , join_order_header.customer_id
-            -- , join_order_header.sales_person_id
-            -- , join_order_header.territory_id
-            -- , join_order_header.credit_card_id
-            -- , join_order_detail.sales_order_detail_id
-            -- , join_order_detail.product_id
-
             , join_order_header.subtotal 
             , join_order_header.taxamt
             , join_order_header.freight
@@ -177,10 +160,6 @@ with
         left join join_order_header
             on join_order_detail.sales_order_id = join_order_header.sales_order_id
         order by fct_sales_sk  
-        -- from join_order_header
-        -- left join join_order_detail
-        --     on join_order_header.sales_order_id = join_order_detail.sales_order_id
-        -- order by fct_sales_sk
     )
 
 select *

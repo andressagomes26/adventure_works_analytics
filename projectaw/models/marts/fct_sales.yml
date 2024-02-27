@@ -22,10 +22,12 @@ models:
 
       - name: location_fk
         description: Unique location identifier.
+        tests:
+          - not_null
 
       - name: credit_card_fk
         description: Unique credit card identifier.
-
+          
       - name: reason_fk
         description: Unique sales reason identifier.
 
@@ -54,34 +56,10 @@ models:
         tests:
           - not_null
 
-      - name: customer_id
-        description: Customer identification number.
-        tests:
-          - not_null
-
-      - name: sales_person_id
-        description: Sales person who created the sales order.
-
-      - name: territory_id
-        description: Territory identification number.
-        tests:
-          - not_null
-
-      - name: credit_card_id
-        description: Credit card identification number. 
-
-      - name: sales_order_detail_id
-        description: Unique sales order detail identifier.
-        tests:
-          - not_null
-
-      - name: product_id
-        description: Product sold to customer.
-        tests:
-          - not_null
-
-      - name: net_sales_revenue
+      - name: subtotal
         description: Sales subtotal.
+        tests:
+          - not_null
 
       - name: taxamt
         description: Tax amount.
@@ -117,3 +95,9 @@ models:
         description: Amount the customer paid for the product. Not including fees, shipping and taxes.
         tests:
           - not_null
+
+      - name: standardcost
+        description: Standard cost of the product.
+
+      - name: listprice
+        description: Selling price of the product.
