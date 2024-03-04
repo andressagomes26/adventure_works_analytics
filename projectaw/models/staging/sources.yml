@@ -5,7 +5,6 @@ sources:
     description: Data from the SAP system integrated into the Adventure Works database.
     schema: dev_andressa_sap_adw
     tables:
-      # Production schema
       - name: product
         description: Products sold.
         columns:
@@ -33,7 +32,6 @@ sources:
               - unique
               - not_null
 
-      # Person schema
       - name: stateprovince
         description: State and province lookup table.
         columns:
@@ -70,7 +68,6 @@ sources:
               - unique
               - not_null
 
-      # Sales schema
       - name: customer
         description: Current customer information.
         columns:

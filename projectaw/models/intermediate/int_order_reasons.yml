@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: int_order_reasons 
+    description: This model represents the intermediary of purchase reasons.
+    columns:
+      - name: sales_order_id
+        description: Unique Sales Order Header identifier.
+        tests:
+          - not_null
+      
+      - name: sales_reason_name
+        description: Sales reason description.
+        tests:
+          - not_null
+
+      - name: reason_type
+        description: Category the sales reason belongs to.
+        tests:
+          - not_null
+
+      - name: Price
+        description: Column to identify the Price reason
+        tests:
+          - not_null
+
+      - name: Manufacturer
+        description: Column to identify the Manufacturer reason
+        tests:
+          - not_null
+
+      - name: Quality
+        description: Column to identify the Quality reason
+        tests:
+          - not_null
+
+      - name: Promotion
+        description: Column to identify the On Promotion reason
+        tests:
+          - not_null
+
+      - name: Other
+        description: Column to identify the Other reason
+        tests:
+          - not_null          
+
+      - name: Television
+        description: Column to identify the Television Advertisement reason
+        tests:
+          - not_null    

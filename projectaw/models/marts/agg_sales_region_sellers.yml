@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: agg_sales_region_sellers
+    description: This model represents the aggregated table of sales by region and seller.
+    columns:
+      - name: agg_sales_region_person_sk
+        description: The surrogate key of the aggregated table.
+        tests:
+          - unique
+          - not_null
+
+      - name: country_region_name
+        description: Country or region name.
+        tests:
+          - not_null
+
+      - name: jobtitle
+        description: Specific role of the seller.
+        tests:
+          - not_null
+
+      - name: gender
+        description: Gender of employee.
+        tests:
+          - not_null
+
+      - name: total_sales_orders
+        description: Seller count.
+        tests:
+          - not_null

@@ -1,4 +1,3 @@
---talvez apagar a salesperson ou criar o Employee.BusinessEntityID
 with 
     sales_person_data as (
         select 
