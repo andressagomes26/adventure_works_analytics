@@ -39,3 +39,14 @@ dbt run
 ```bash
 dbt test
 ```
+
+
+## Arquivos
+- Diretório com as entregas do projeto: *[./files/](https://github.com/andressagomes26/adventure_works_analytics/tree/main/files)*.
+- Projeto no GitHub: *[adventure_works_analytics](https://github.com/andressagomes26/adventure_works_analytics)*.
+- Modelo Conceitual: *[modelo_conceitual.pdf](https://github.com/andressagomes26/adventure_works_analytics/blob/main/files/modelo_conceitual.pdf)*.
+- Dashboard Adventure Works:
+  - *[online](https://app.powerbi.com/view?r=eyJrIjoiMDgxYzFjODAtNWI4Ni00YmU1LWI0MjgtY2NiODYyMjE5N2FlIiwidCI6ImQ5NGUwYTgxLWE2OWYtNDQwYy05NzY3LWI2N2RkNGIxMzc5ZCJ9)*.
+  - *[project_adw.pbix](https://github.com/andressagomes26/adventure_works_analytics/blob/main/files/project_adw.pbix)*.
+- Relatório: *[relatorio_final.pdf](https://github.com/andressagomes26/adventure_works_analytics/blob/main/files/relatorio_final.pdf)*.
+- Notebook de Desenvolvimento - Previsão de Demanda: *[demand_forecast.ipynb](https://github.com/andressagomes26/adventure_works_demand_forecast/blob/main/demand_forecast.ipynb)*
