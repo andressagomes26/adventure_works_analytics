@@ -1,24 +1,23 @@
 with 
-    test_dim_locations as (
+    test_state_province as (
         select 
-            location_sk
-            , city
-            , state_province_name
-            , country_region_code
-            , country_region_name
-        from {{ ref('dim_locations') }}
+            stateprovinceid
+            , stateprovincecode
+            , countryregioncode
+            , name
+        from {{ source('sap_adw', 'stateprovince') }}
         where
-            location_sk = '225325a0029a6046cc81731ac8bec58f'
+            stateprovinceid = 2
     )
 
     , test_validation as (
         select 
             * 
-        from test_dim_locations 
+        from test_state_province 
         where 
-            city != 'Saint Ouen'
-            or country_region_code != 'FR'
-            or country_region_name != 'França'
+            stateprovincecode != 'AK '
+            or countryregioncode != 'US'
+            or name != 'Alaska'
     )
 
 select * 

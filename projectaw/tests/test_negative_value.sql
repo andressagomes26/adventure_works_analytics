@@ -2,7 +2,7 @@ with
     negative_value as (
         select 
             totaldue
-        from {{ ref("fct_sales") }}
+        from {{ source('sap_adw', 'salesorderheader') }}
     )
 
 select *

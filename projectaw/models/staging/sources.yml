@@ -110,7 +110,21 @@ sources:
             description: Primary key.
             tests:
               - unique
-              - not_null     
+              - not_null
+
+          - name: subtotal
+            description: Sales subtotal.
+            tests:
+              - dbt_utils.accepted_range:
+                  min_value: 0
+                  inclusive: false
+
+          - name: onlineorderflag
+            description: Online shop.
+            tests:
+              - accepted_values:
+                  values: [true, false]
+                  quote: false
 
       - name: salesorderdetail
         description: Individual products associated with a specific sales order. 
